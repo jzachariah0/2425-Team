@@ -2,26 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>2425 Team</title>
     <meta
       name="description"
-      content="Internal site for a UTD senior design search-and-rescue sensing team."
+      content="2425 Team senior design hub for a search-and-rescue sensing device."
     />
-    <title>[PROJECT NAME]</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <!-- Exact stylesheets from the local palantir.com mirror (karp-AI) -->
+    <link rel="stylesheet" href="_next/static/css/0bb5a1be7a9ac24e.css" />
+    <link rel="stylesheet" href="_next/static/css/567b6efa152398f0.css" />
+    <link rel="stylesheet" href="_next/static/css/1ed43d94fcc44917.css" />
+    <link rel="stylesheet" href="site.css" />
   </head>
   <body>
     <div class="page">
       <header class="header">
         <div class="header__bar">
-          <span class="earmark" id="updated-tag">Updated</span>
-          <div class="status" role="status">
+          <p class="earmark" id="updated-tag">Updated</p>
+          <p class="status earmark">
             <span class="status__dot" aria-hidden="true"></span>
-            <span class="earmark" id="project-status">ACTIVE</span>
-          </div>
+            <span id="project-status">ACTIVE</span>
+          </p>
         </div>
 
-        <h1 class="headline" id="project-name">[PROJECT NAME]</h1>
+        <h1 class="headline" id="project-name">2425 Team</h1>
         <p class="dek" id="project-desc"></p>
 
         <nav class="nav" aria-label="Sections">
@@ -35,22 +40,22 @@
 
       <main>
         <section class="section" id="decisions">
-          <h2 class="section__title">Decisions</h2>
+          <h2 class="section__title earmark">Decisions</h2>
           <ol class="decisions" id="decisions-list"></ol>
         </section>
 
         <section class="section" id="links">
-          <h2 class="section__title">Links</h2>
+          <h2 class="section__title earmark">Links</h2>
           <div class="links" id="links-row"></div>
         </section>
 
         <section class="section" id="glossary">
-          <h2 class="section__title">Glossary</h2>
+          <h2 class="section__title earmark">Glossary</h2>
           <dl class="glossary" id="glossary-list"></dl>
         </section>
 
         <section class="section" id="team">
-          <h2 class="section__title">Team</h2>
+          <h2 class="section__title earmark">Team</h2>
           <div class="table-wrap">
             <table class="table" id="team-table">
               <thead>
@@ -66,14 +71,14 @@
         </section>
 
         <section class="section" id="milestones">
-          <h2 class="section__title">Milestones</h2>
+          <h2 class="section__title earmark">Milestones</h2>
           <div class="timeline" id="timeline"></div>
         </section>
       </main>
 
       <footer class="footer">
-        <span class="earmark">Internal</span>
-        <span class="earmark" id="footer-stamp"></span>
+        <p class="earmark">Internal</p>
+        <p class="earmark" id="footer-stamp"></p>
       </footer>
     </div>
 

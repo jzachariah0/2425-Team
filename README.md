@@ -1,6 +1,6 @@
-# [PROJECT NAME]
+# 2425 Team
 
-Internal site for a UTD senior design search-and-rescue sensing team. Static HTML, CSS, and JS.
+Senior design hub. Visual tokens and Alliance fonts come from the local [karp-AI](../karp-AI) mirror of palantir.com.
 
 ## Edit content
 
@@ -16,4 +16,4 @@ Open http://localhost:8080
 
 ## Deploy
 
-GitHub Pages from `main` / root, or `npx vercel`.
+GitHub Pages from `main` / root: https://github.com/jzachariah0/2425-Team

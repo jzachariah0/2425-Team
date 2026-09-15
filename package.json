@@ -1,0 +1,14 @@
+{
+  "name": "2425-team",
+  "version": "1.0.0",
+  "private": true,
+  "description": "2425 Team site using palantir.com styles from the local karp-AI mirror",
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "mirror": "node server.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
