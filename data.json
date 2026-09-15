@@ -1,32 +1,11 @@
 {
   "project": {
     "name": "2425 Team",
-    "description": "Search-and-rescue sensing device. Senior design team hub for decisions, links, and delivery dates.",
+    "description": "Search-and-rescue sensing device. Senior design command surface.",
     "status": "ACTIVE",
     "updated": "2026-09-15"
   },
-  "decisions": [
-    {
-      "date": "2026-09-12",
-      "decision": "Selected ESP32-S3 as the primary compute board for sensing and telemetry.",
-      "reason": "Wi-Fi and BLE on board, dual-core headroom for fusion, lowest cost risk for a prototype."
-    },
-    {
-      "date": "2026-09-05",
-      "decision": "First validation test scoped to outdoor rubble and light indoor spaces.",
-      "reason": "Fits the semester while still stressing multipath and occlusion."
-    },
-    {
-      "date": "2026-08-28",
-      "decision": "Use Kanban with a weekly status freeze instead of formal sprints.",
-      "reason": "Works better with five subsystems, uneven lab access, and part lead times."
-    },
-    {
-      "date": "2026-08-20",
-      "decision": "Primary sensing pair is thermal plus IMU. Acoustic is a stretch goal.",
-      "reason": "Thermal is useful for SAR demos. Acoustic needs more DSP time than we can guarantee."
-    }
-  ],
+  "decisions": [],
   "links": [
     {
       "id": "slack",
@@ -79,34 +58,53 @@
   ],
   "team": [
     {
-      "name": "[Member Name]",
-      "role": "Team Lead / Systems",
-      "subsystem": "Integration"
+      "name": "Joshua Zachariah",
+      "major": "CE",
+      "role": "Team Lead, TPM Software",
+      "email": "jsz230000@utdallas.edu",
+      "photo": "media/team/joshua.jpg"
     },
     {
-      "name": "[Member Name]",
-      "role": "Electrical Lead",
-      "subsystem": "Power and sensing hardware"
+      "name": "Abdullah Adnan",
+      "major": "CE",
+      "role": "TPM Hardware and Embedded Systems Backup SPOC",
+      "email": "ata230001@utdallas.edu",
+      "photo": "media/team/abdullah.jpg"
     },
     {
-      "name": "[Member Name]",
-      "role": "Firmware Lead",
-      "subsystem": "MCU and drivers"
+      "name": "Faizan Kalam",
+      "major": "CE",
+      "role": "Radar Firmware Engineer",
+      "email": "fxk220010@utdallas.edu",
+      "photo": "media/team/faizan.jpg"
     },
     {
-      "name": "[Member Name]",
-      "role": "Algorithms",
-      "subsystem": "Detection and fusion"
+      "name": "Ridwan Shakoor",
+      "major": "CE",
+      "role": "Systems Integration and Wireless Engineer & Scribe",
+      "email": "rxs220092@utdallas.edu",
+      "photo": "media/team/ridwan.jpg"
     },
     {
-      "name": "[Member Name]",
-      "role": "Mechanical",
-      "subsystem": "Enclosure and mounting"
+      "name": "[Name]",
+      "major": "CE",
+      "role": "[Role]",
+      "email": "",
+      "photo": "media/team/member-5.jpg"
     },
     {
-      "name": "[Member Name]",
-      "role": "Validation",
-      "subsystem": "Test plans and data"
+      "name": "[Name]",
+      "major": "CE",
+      "role": "[Role]",
+      "email": "",
+      "photo": "media/team/member-6.jpg"
+    },
+    {
+      "name": "[Name]",
+      "major": "CE",
+      "role": "[Role]",
+      "email": "",
+      "photo": "media/team/member-7.jpg"
     }
   ],
   "milestones": [

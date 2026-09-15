@@ -50,7 +50,15 @@ function renderProject(project) {
 
 function renderDecisions(decisions) {
   const list = $("#decisions-list");
+  if (!decisions || decisions.length === 0) {
+    list.innerHTML = `
+      <p class="tbd__label earmark">TBD</p>
+      <p class="tbd__copy">No decisions logged yet.</p>`;
+    return;
+  }
   const sorted = [...decisions].sort((a, b) => (a.date < b.date ? 1 : -1));
+  list.classList.remove("tbd");
+  list.classList.add("decisions");
   list.innerHTML = sorted
     .map(
       (d) => `
@@ -95,17 +103,52 @@ function renderGlossary(terms) {
 }
 
 function renderTeam(members) {
-  const tbody = $("#team-table tbody");
-  tbody.innerHTML = members
+  const grid = $("#team-grid");
+  grid.innerHTML = members
     .map(
-      (m) => `
-      <tr>
-        <td>${escapeHtml(m.name)}</td>
-        <td>${escapeHtml(m.role)}</td>
-        <td>${escapeHtml(m.subsystem)}</td>
-      </tr>`
+      (m, i) => `
+      <article class="person" style="--i:${i}">
+        <div class="person__media">
+          <img
+            class="person__photo"
+            src="${escapeAttr(m.photo)}"
+            alt="${escapeAttr(m.name)}"
+            loading="lazy"
+          />
+        </div>
+        <div class="person__meta">
+          <p class="person__major earmark">${escapeHtml(m.major || "CE")}</p>
+          <h3 class="person__name">${escapeHtml(m.name)}</h3>
+          <p class="person__role">${escapeHtml(m.role)}</p>
+          ${
+            m.email
+              ? `<a class="person__email" href="mailto:${escapeAttr(m.email)}">${escapeHtml(m.email)}</a>`
+              : ""
+          }
+        </div>
+      </article>`
     )
     .join("");
+}
+
+function initReveal() {
+  const nodes = document.querySelectorAll("[data-reveal], .person");
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    nodes.forEach((n) => n.classList.add("is-visible"));
+    return;
+  }
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("is-visible");
+          io.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+  );
+  nodes.forEach((n) => io.observe(n));
 }
 
 function renderMilestones(milestones) {
@@ -429,6 +472,8 @@ async function boot() {
     renderGlossary(data.glossary);
     renderTeam(data.team);
     renderMilestones(data.milestones);
+    // observe people after DOM inject
+    requestAnimationFrame(() => initReveal());
   } catch (err) {
     console.error(err);
     $("#project-desc").textContent =
