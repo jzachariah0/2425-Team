@@ -1,3 +1,5 @@
+import * as THREE from "three";
+
 const $ = (sel, root = document) => root.querySelector(sel);
 
 async function loadData() {
@@ -153,8 +155,273 @@ function renderMilestones(milestones) {
     </div>`;
 }
 
+function initScene() {
+  const canvas = $("#scene");
+  if (!canvas) return () => {};
+
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const isMobile = window.matchMedia("(max-width: 640px)").matches;
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    antialias: !isMobile,
+    alpha: true,
+    powerPreference: "high-performance",
+  });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isMobile ? 1.4 : 2));
+  renderer.setClearColor(0x000000, 0);
+
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x000000, 0.045);
+
+  const camera = new THREE.PerspectiveCamera(48, 1, 0.1, 200);
+  camera.position.set(0, 3.2, 14);
+
+  const accent = 0x4e8af7;
+  const white = 0xffffff;
+
+  // Warped terrain
+  const terrainGeo = new THREE.PlaneGeometry(40, 40, isMobile ? 48 : 96, isMobile ? 48 : 96);
+  const pos = terrainGeo.attributes.position;
+  for (let i = 0; i < pos.count; i++) {
+    const x = pos.getX(i);
+    const y = pos.getY(i);
+    const z =
+      Math.sin(x * 0.22) * Math.cos(y * 0.18) * 1.1 +
+      Math.sin(x * 0.55 + y * 0.4) * 0.35 +
+      Math.cos((x + y) * 0.12) * 0.55;
+    pos.setZ(i, z);
+  }
+  const terrain = new THREE.Mesh(
+    terrainGeo,
+    new THREE.MeshBasicMaterial({
+      color: accent,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.22,
+    })
+  );
+  terrain.rotation.x = -Math.PI / 2.05;
+  terrain.position.y = -1.6;
+  scene.add(terrain);
+
+  // Grid
+  const grid = new THREE.GridHelper(42, 56, accent, 0x1e2124);
+  grid.position.y = -1.55;
+  grid.material.transparent = true;
+  grid.material.opacity = 0.35;
+  scene.add(grid);
+
+  // Nested orbital rings
+  const ringGroup = new THREE.Group();
+  for (let i = 0; i < 5; i++) {
+    const ring = new THREE.Mesh(
+      new THREE.TorusGeometry(1.4 + i * 0.55, 0.012, 10, 180),
+      new THREE.MeshBasicMaterial({
+        color: i % 2 ? white : accent,
+        transparent: true,
+        opacity: 0.55 - i * 0.07,
+      })
+    );
+    ring.rotation.x = Math.PI / 2.2 + i * 0.18;
+    ring.rotation.y = i * 0.35;
+    ringGroup.add(ring);
+  }
+  ringGroup.position.set(3.6, 1.8, -1.2);
+  scene.add(ringGroup);
+
+  // Core icosahedron cluster
+  const coreGroup = new THREE.Group();
+  const core = new THREE.Mesh(
+    new THREE.IcosahedronGeometry(0.55, 1),
+    new THREE.MeshBasicMaterial({
+      color: accent,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.95,
+    })
+  );
+  coreGroup.add(core);
+  const coreShell = new THREE.Mesh(
+    new THREE.IcosahedronGeometry(0.9, 0),
+    new THREE.MeshBasicMaterial({
+      color: white,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.25,
+    })
+  );
+  coreGroup.add(coreShell);
+  coreGroup.position.copy(ringGroup.position);
+  scene.add(coreGroup);
+
+  // Sweeping scan planes
+  const beams = [];
+  for (let i = 0; i < 3; i++) {
+    const beam = new THREE.Mesh(
+      new THREE.PlaneGeometry(0.05, 18),
+      new THREE.MeshBasicMaterial({
+        color: accent,
+        transparent: true,
+        opacity: 0.28,
+        side: THREE.DoubleSide,
+      })
+    );
+    beam.position.set(-12 + i * 4, 2.2, -2 + i);
+    beam.rotation.y = 0.15 * i;
+    scene.add(beam);
+    beams.push({ mesh: beam, speed: 1.4 + i * 0.35, phase: i * 2.1 });
+  }
+
+  // Particle field
+  const count = isMobile ? 600 : 1800;
+  const pointsGeo = new THREE.BufferGeometry();
+  const arr = new Float32Array(count * 3);
+  const speed = new Float32Array(count);
+  for (let i = 0; i < count; i++) {
+    arr[i * 3] = (Math.random() - 0.5) * 36;
+    arr[i * 3 + 1] = Math.random() * 10 - 1;
+    arr[i * 3 + 2] = (Math.random() - 0.5) * 28 - 2;
+    speed[i] = 0.2 + Math.random() * 0.8;
+  }
+  pointsGeo.setAttribute("position", new THREE.BufferAttribute(arr, 3));
+  const points = new THREE.Points(
+    pointsGeo,
+    new THREE.PointsMaterial({
+      color: white,
+      size: isMobile ? 0.035 : 0.028,
+      transparent: true,
+      opacity: 0.75,
+      sizeAttenuation: true,
+    })
+  );
+  scene.add(points);
+
+  // Connecting arcs (great-circle style lines)
+  const arcGroup = new THREE.Group();
+  for (let i = 0; i < (isMobile ? 8 : 16); i++) {
+    const curve = new THREE.QuadraticBezierCurve3(
+      new THREE.Vector3((Math.random() - 0.5) * 16, Math.random() * 2, (Math.random() - 0.5) * 10),
+      new THREE.Vector3((Math.random() - 0.5) * 8, 3 + Math.random() * 3, (Math.random() - 0.5) * 6),
+      new THREE.Vector3((Math.random() - 0.5) * 16, Math.random() * 2, (Math.random() - 0.5) * 10)
+    );
+    const pts = curve.getPoints(40);
+    const geo = new THREE.BufferGeometry().setFromPoints(pts);
+    const line = new THREE.Line(
+      geo,
+      new THREE.LineBasicMaterial({
+        color: accent,
+        transparent: true,
+        opacity: 0.22 + Math.random() * 0.25,
+      })
+    );
+    arcGroup.add(line);
+  }
+  scene.add(arcGroup);
+
+  // Floating nodes
+  const nodes = [];
+  for (let i = 0; i < (isMobile ? 12 : 24); i++) {
+    const node = new THREE.Mesh(
+      new THREE.OctahedronGeometry(0.08 + Math.random() * 0.08, 0),
+      new THREE.MeshBasicMaterial({
+        color: Math.random() > 0.5 ? accent : white,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.7,
+      })
+    );
+    node.position.set(
+      (Math.random() - 0.5) * 18,
+      Math.random() * 5,
+      (Math.random() - 0.5) * 14
+    );
+    scene.add(node);
+    nodes.push({
+      mesh: node,
+      base: node.position.clone(),
+      amp: 0.3 + Math.random() * 0.6,
+      freq: 0.4 + Math.random() * 1.2,
+      phase: Math.random() * Math.PI * 2,
+    });
+  }
+
+  const pointer = { x: 0, y: 0 };
+  const onPointer = (e) => {
+    pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
+    pointer.y = (e.clientY / window.innerHeight) * 2 - 1;
+  };
+  window.addEventListener("pointermove", onPointer, { passive: true });
+
+  const resize = () => {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  };
+  resize();
+  window.addEventListener("resize", resize);
+
+  let raf = 0;
+  const clock = new THREE.Clock();
+
+  const animate = () => {
+    raf = requestAnimationFrame(animate);
+    const t = clock.getElapsedTime();
+
+    if (!reduced) {
+      terrain.rotation.z = Math.sin(t * 0.05) * 0.08;
+      ringGroup.rotation.z = t * 0.18;
+      ringGroup.rotation.y = t * 0.11;
+      coreGroup.rotation.x = t * 0.55;
+      coreGroup.rotation.y = t * 0.72;
+      core.scale.setScalar(1 + Math.sin(t * 2.2) * 0.06);
+
+      beams.forEach((b) => {
+        b.mesh.position.x = -14 + ((t * b.speed + b.phase * 3) % 28);
+        b.mesh.material.opacity = 0.12 + (Math.sin(t * 3 + b.phase) * 0.5 + 0.5) * 0.28;
+      });
+
+      const pAttr = points.geometry.attributes.position;
+      for (let i = 0; i < count; i++) {
+        let y = pAttr.getY(i) + 0.01 * speed[i];
+        if (y > 10) y = -1;
+        pAttr.setY(i, y);
+      }
+      pAttr.needsUpdate = true;
+      points.rotation.y = t * 0.03;
+
+      arcGroup.rotation.y = Math.sin(t * 0.08) * 0.15;
+
+      nodes.forEach((n) => {
+        n.mesh.position.y = n.base.y + Math.sin(t * n.freq + n.phase) * n.amp;
+        n.mesh.rotation.x = t * n.freq;
+        n.mesh.rotation.z = t * n.freq * 0.7;
+      });
+
+      camera.position.x = pointer.x * 1.8;
+      camera.position.y = 3.2 + pointer.y * -0.6;
+      camera.position.z = 14 + Math.sin(t * 0.15) * 0.4;
+      camera.lookAt(pointer.x * 0.8, 0.6 + pointer.y * -0.2, 0);
+    }
+
+    renderer.render(scene, camera);
+  };
+  animate();
+
+  return () => {
+    cancelAnimationFrame(raf);
+    window.removeEventListener("resize", resize);
+    window.removeEventListener("pointermove", onPointer);
+    renderer.dispose();
+  };
+}
+
 async function boot() {
+  let dispose = () => {};
   try {
+    dispose = initScene();
     const data = await loadData();
     renderProject(data.project);
     renderDecisions(data.decisions);
@@ -167,6 +434,7 @@ async function boot() {
     $("#project-desc").textContent =
       "Could not load data.json. Serve this folder over HTTP.";
   }
+  window.addEventListener("pagehide", () => dispose(), { once: true });
 }
 
 boot();

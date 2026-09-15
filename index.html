@@ -9,13 +9,18 @@
       content="2425 Team senior design hub for a search-and-rescue sensing device."
     />
     <link rel="shortcut icon" href="favicon.ico" />
-    <!-- Exact stylesheets from the local palantir.com mirror (karp-AI) -->
     <link rel="stylesheet" href="_next/static/css/0bb5a1be7a9ac24e.css" />
     <link rel="stylesheet" href="_next/static/css/567b6efa152398f0.css" />
     <link rel="stylesheet" href="_next/static/css/1ed43d94fcc44917.css" />
     <link rel="stylesheet" href="site.css" />
   </head>
-  <body>
+  <body class="ptcom-design__dark__1ny5qy1 theme-dark">
+    <div class="hero" aria-hidden="true">
+      <img class="hero__still" src="media/hero-still.jpg" alt="" />
+      <canvas id="scene"></canvas>
+      <div class="hero__veil"></div>
+    </div>
+
     <div class="page">
       <header class="header">
         <div class="header__bar">
@@ -82,6 +87,13 @@
       </footer>
     </div>
 
-    <script src="app.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"
+        }
+      }
+    </script>
+    <script type="module" src="app.js"></script>
   </body>
 </html>
