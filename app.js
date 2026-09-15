@@ -41,7 +41,7 @@ function escapeAttr(str) {
 
 function renderProject(project) {
   document.title = project.name;
-  $("#project-name").textContent = project.name;
+  $("#project-name").textContent = String(project.name || "").toUpperCase();
   $("#project-desc").textContent = project.description;
   $("#project-status").textContent = project.status;
   $("#updated-tag").textContent = `Updated ${formatStamp(project.updated)}`;

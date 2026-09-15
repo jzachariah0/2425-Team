@@ -138,15 +138,18 @@ body.theme-dark .link__label {
 }
 
 .headline {
-  font-family: var(--headline-200-family);
-  font-size: var(--headline-200-size);
+  font-family: "Alliance No.2", "Alliance No.1", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial,
+    sans-serif !important;
+  font-size: clamp(4rem, 14vw, 7.5rem);
   font-weight: 700;
-  letter-spacing: var(--headline-200-letter);
-  line-height: var(--headline-200-line);
+  letter-spacing: -0.03em;
+  line-height: 0.92;
   color: #fff;
-  margin: 0 0 calc(var(--gutter, 1rem) * 1.5);
-  max-width: 12ch;
-  text-shadow: 0 0 40px rgba(0, 0, 0, 0.55);
+  margin: 0 0 calc(var(--gutter, 1rem) * 1.75);
+  max-width: none;
+  text-transform: none;
+  text-shadow: 0 0 60px rgba(0, 0, 0, 0.45);
 }
 
 .dek {
@@ -247,15 +250,16 @@ body.theme-dark .link__label {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   display: block;
-  filter: grayscale(0.15) contrast(1.05);
-  transform: scale(1.02);
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), filter 0.5s ease;
+  image-rendering: auto;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0) scale(1.01);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .person:hover .person__photo {
-  transform: scale(1.06);
-  filter: grayscale(0) contrast(1.08);
+  transform: translateZ(0) scale(1.05);
 }
 
 .person__meta {
@@ -644,10 +648,6 @@ body.theme-dark .link__label {
 
   .links {
     grid-template-columns: 1fr;
-  }
-
-  .headline {
-    max-width: none;
   }
 
   .hero__still {
