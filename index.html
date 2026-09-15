@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Internal site for a UTD senior design search-and-rescue sensing team."
+    />
+    <title>[PROJECT NAME]</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="header__bar">
+          <span class="earmark" id="updated-tag">Updated</span>
+          <div class="status" role="status">
+            <span class="status__dot" aria-hidden="true"></span>
+            <span class="earmark" id="project-status">ACTIVE</span>
+          </div>
+        </div>
+
+        <h1 class="headline" id="project-name">[PROJECT NAME]</h1>
+        <p class="dek" id="project-desc"></p>
+
+        <nav class="nav" aria-label="Sections">
+          <a href="#decisions">Decisions</a>
+          <a href="#links">Links</a>
+          <a href="#glossary">Glossary</a>
+          <a href="#team">Team</a>
+          <a href="#milestones">Milestones</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="section" id="decisions">
+          <h2 class="section__title">Decisions</h2>
+          <ol class="decisions" id="decisions-list"></ol>
+        </section>
+
+        <section class="section" id="links">
+          <h2 class="section__title">Links</h2>
+          <div class="links" id="links-row"></div>
+        </section>
+
+        <section class="section" id="glossary">
+          <h2 class="section__title">Glossary</h2>
+          <dl class="glossary" id="glossary-list"></dl>
+        </section>
+
+        <section class="section" id="team">
+          <h2 class="section__title">Team</h2>
+          <div class="table-wrap">
+            <table class="table" id="team-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Role</th>
+                  <th>Subsystem</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section" id="milestones">
+          <h2 class="section__title">Milestones</h2>
+          <div class="timeline" id="timeline"></div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span class="earmark">Internal</span>
+        <span class="earmark" id="footer-stamp"></span>
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

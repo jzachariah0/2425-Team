@@ -1,0 +1,139 @@
+{
+  "project": {
+    "name": "2425 Team",
+    "description": "Search-and-rescue sensing device. Senior design team hub for decisions, links, and delivery dates.",
+    "status": "ACTIVE",
+    "updated": "2026-09-15"
+  },
+  "decisions": [
+    {
+      "date": "2026-09-12",
+      "decision": "Selected ESP32-S3 as the primary compute board for sensing and telemetry.",
+      "reason": "Wi-Fi and BLE on board, dual-core headroom for fusion, lowest cost risk for a prototype."
+    },
+    {
+      "date": "2026-09-05",
+      "decision": "First validation test scoped to outdoor rubble and light indoor spaces.",
+      "reason": "Fits the semester while still stressing multipath and occlusion."
+    },
+    {
+      "date": "2026-08-28",
+      "decision": "Use Kanban with a weekly status freeze instead of formal sprints.",
+      "reason": "Works better with five subsystems, uneven lab access, and part lead times."
+    },
+    {
+      "date": "2026-08-20",
+      "decision": "Primary sensing pair is thermal plus IMU. Acoustic is a stretch goal.",
+      "reason": "Thermal is useful for SAR demos. Acoustic needs more DSP time than we can guarantee."
+    }
+  ],
+  "links": [
+    {
+      "id": "slack",
+      "label": "Slack",
+      "subtitle": "Workspace",
+      "url": "https://join.slack.com/t/seniordesign-yhw5719/shared_invite/zt-48tuyz492-LtYze1a8qfKvy2xpES4fEA"
+    },
+    {
+      "id": "kanban",
+      "label": "Kanban",
+      "subtitle": "Jira",
+      "url": "https://utdallas-senior-design.atlassian.net/?continue=https%3A%2F%2Futdallas-senior-design.atlassian.net%2Fwelcome%2Fsoftware%3FprojectId%3D10001&atlOrigin=eyJpIjoiMDQ1MjM1Y2VmMGFhNDJhODljMmE1NGYwOGRjYTk1MGIiLCJwIjoiamlyYS1zb2Z0d2FyZSJ9"
+    },
+    {
+      "id": "drive",
+      "label": "OneDrive",
+      "subtitle": "Files",
+      "url": "https://cometmail-my.sharepoint.com/:f:/g/personal/jsz230000_utdallas_edu/IgDmrOsArL9HSb7y2PLh6oCAAXWii7ajYXEgHmXqQNspsZc?e=7NxKR4"
+    },
+    {
+      "id": "charter",
+      "label": "Team Charter",
+      "subtitle": "Document",
+      "url": "https://example.com/charter"
+    },
+    {
+      "id": "proposal",
+      "label": "Proposal",
+      "subtitle": "Document",
+      "url": "https://example.com/proposal"
+    }
+  ],
+  "glossary": [
+    {
+      "term": "Sensor Fusion",
+      "definition": "Combining readings from more than one sensor so the result is more reliable than any single source. Here that means thermal, IMU, and ranging data into one picture."
+    },
+    {
+      "term": "False Positive Rate",
+      "definition": "How often the detector reports a victim or hazard when none is there. We track it in validation because noisy alerts waste rescuer time."
+    },
+    {
+      "term": "Telemetry",
+      "definition": "Sending device health and sensing outputs to an operator view. Wi-Fi first, with local buffering when the link drops."
+    },
+    {
+      "term": "BOM",
+      "definition": "Bill of materials: the full parts list with quantities and costs. We freeze it before each order so spending stays clear."
+    }
+  ],
+  "team": [
+    {
+      "name": "[Member Name]",
+      "role": "Team Lead / Systems",
+      "subsystem": "Integration"
+    },
+    {
+      "name": "[Member Name]",
+      "role": "Electrical Lead",
+      "subsystem": "Power and sensing hardware"
+    },
+    {
+      "name": "[Member Name]",
+      "role": "Firmware Lead",
+      "subsystem": "MCU and drivers"
+    },
+    {
+      "name": "[Member Name]",
+      "role": "Algorithms",
+      "subsystem": "Detection and fusion"
+    },
+    {
+      "name": "[Member Name]",
+      "role": "Mechanical",
+      "subsystem": "Enclosure and mounting"
+    },
+    {
+      "name": "[Member Name]",
+      "role": "Validation",
+      "subsystem": "Test plans and data"
+    }
+  ],
+  "milestones": [
+    {
+      "id": "parts",
+      "label": "Parts ordered",
+      "date": "2026-09-22"
+    },
+    {
+      "id": "proposal",
+      "label": "Proposal submitted",
+      "date": "2026-10-03"
+    },
+    {
+      "id": "validation",
+      "label": "First validation test",
+      "date": "2026-11-07"
+    },
+    {
+      "id": "dryrun",
+      "label": "Demo dry run",
+      "date": "2026-11-21"
+    },
+    {
+      "id": "defense",
+      "label": "Final defense",
+      "date": "2026-12-05"
+    }
+  ]
+}
