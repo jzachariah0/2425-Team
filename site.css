@@ -7,6 +7,19 @@ body.theme-dark {
   min-height: 100%;
 }
 
+body.theme-dark .page,
+body.theme-dark .section,
+body.theme-dark .person,
+body.theme-dark .person__meta,
+body.theme-dark .header,
+body.theme-dark .footer,
+body.theme-dark .tbd,
+body.theme-dark .links,
+body.theme-dark .glossary__item {
+  background-color: transparent !important;
+  color: inherit;
+}
+
 body.theme-dark {
   --body-color: #000;
   --body-color-medium: #1e2124;

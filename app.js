@@ -3,6 +3,14 @@ import * as THREE from "three";
 const $ = (sel, root = document) => root.querySelector(sel);
 
 async function loadData() {
+  const embedded = document.getElementById("hera-data");
+  if (embedded?.textContent?.trim()) {
+    try {
+      return JSON.parse(embedded.textContent);
+    } catch (err) {
+      console.warn("Embedded data parse failed", err);
+    }
+  }
   const res = await fetch("./data.json", { cache: "no-store" });
   if (!res.ok) throw new Error(`Failed to load data.json (${res.status})`);
   return res.json();
@@ -478,7 +486,7 @@ async function boot() {
   } catch (err) {
     console.error(err);
     $("#project-desc").textContent =
-      "Could not load data.json. Serve this folder over HTTP.";
+      "Could not load site data. Open http://127.0.0.1:8765 instead of the HTML file.";
   }
   window.addEventListener("pagehide", () => dispose(), { once: true });
 }
