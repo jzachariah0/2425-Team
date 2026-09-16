@@ -53,8 +53,8 @@ function renderProject(project) {
   const tag = $("#project-tag");
   if (tag) tag.textContent = project.tagline || "2425 Team";
   $("#project-desc").textContent = project.description;
-  $("#updated-tag").textContent = `Updated ${formatStamp(project.updated)}`;
-  $("#footer-stamp").textContent = `${project.name}  ${formatStamp(project.updated)}`;
+  const stamp = $("#footer-stamp");
+  if (stamp) stamp.textContent = `${project.name}  ${formatStamp(project.updated)}`;
 }
 
 function renderBriefing(briefing) {
@@ -69,15 +69,15 @@ function renderBriefing(briefing) {
   }
 
   root.className = "briefing";
-  const meta = [
-    briefing.author ? escapeHtml(briefing.author) : "",
-    briefing.role ? escapeHtml(briefing.role) : "",
-    briefing.date ? escapeHtml(formatDate(briefing.date)) : "",
+  const lines = [
+    briefing.author ? `<p class="briefing__byline earmark">${escapeHtml(briefing.author)}</p>` : "",
+    briefing.role ? `<p class="briefing__byline earmark">${escapeHtml(briefing.role)}</p>` : "",
+    briefing.date ? `<p class="briefing__byline earmark">${escapeHtml(formatDate(briefing.date))}</p>` : "",
   ].filter(Boolean);
 
   root.innerHTML = `
     <p class="briefing__body">${escapeHtml(briefing.body)}</p>
-    <p class="briefing__byline earmark">${meta.join("  ·  ")}</p>`;
+    <div class="briefing__meta">${lines.join("")}</div>`;
 }
 
 function renderDecisions(decisions) {
