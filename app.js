@@ -138,9 +138,17 @@ function normalizeMission(mission) {
   return [];
 }
 
+function clamp01(n) {
+  return Math.min(1, Math.max(0, n));
+}
+
+let missionScrollCleanup = () => {};
+
 function renderMission(mission) {
   const el = $("#mission-copy");
   if (!el) return;
+  missionScrollCleanup();
+  missionScrollCleanup = () => {};
 
   const segments = normalizeMission(mission);
   if (segments.length === 0) {
@@ -157,7 +165,7 @@ function renderMission(mission) {
           if (!token) return "";
           if (/^\s+$/.test(token)) return token;
           const muted = seg.muted ? " mission-statement__word--muted" : "";
-          const html = `<span class="mission-statement__word${muted}" style="--i:${i}">${escapeHtml(token)}</span>`;
+          const html = `<span class="mission-statement__word${muted}" data-i="${i}">${escapeHtml(token)}</span>`;
           i += 1;
           return html;
         })
@@ -165,25 +173,52 @@ function renderMission(mission) {
     )
     .join("");
 
+  const words = [...el.querySelectorAll(".mission-statement__word")];
+  const section = $("#mission") || el;
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const paint = (progress) => {
+    const n = Math.max(words.length, 1);
+    words.forEach((word, index) => {
+      const start = index / n;
+      const span = 0.55 / n + 0.08;
+      const local = clamp01((progress - start) / span);
+      word.style.opacity = String(0.16 + local * 0.84);
+    });
+  };
+
   if (reduced) {
-    el.classList.add("is-in");
+    paint(1);
     return;
   }
 
-  const section = $("#mission") || el;
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          el.classList.add("is-in");
-          io.disconnect();
-        }
-      });
-    },
-    { threshold: 0.4, rootMargin: "0px 0px -8% 0px" }
-  );
-  io.observe(section);
+  paint(0);
+
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const rect = section.getBoundingClientRect();
+    const vh = window.innerHeight || 1;
+    // Scrub while the statement travels through the middle of the viewport
+    const start = vh * 0.92;
+    const end = vh * 0.28;
+    const progress = clamp01((start - rect.top) / Math.max(start - end, 1));
+    paint(progress);
+  };
+
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  };
+
+  update();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+  missionScrollCleanup = () => {
+    window.removeEventListener("scroll", onScroll);
+    window.removeEventListener("resize", onScroll);
+  };
 }
 
 function renderTeam(members) {

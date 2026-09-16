@@ -469,10 +469,14 @@ body.theme-dark .link__label {
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
+  min-height: 72vh;
+  display: flex;
+  align-items: center;
   padding: clamp(4.5rem, 14vh, 9rem) var(--h-spacing, 1.25rem);
 }
 
 .section--mission .mission-shell {
+  width: 100%;
   max-width: var(--max-width, 80rem);
   margin: 0 auto;
 }
@@ -496,25 +500,12 @@ body.theme-dark .link__label {
 
 .mission-statement__word {
   display: inline-block;
-  opacity: 0;
-  filter: blur(8px);
-  transform: translate3d(0, 0.45em, 0);
-  transition:
-    opacity 1.05s cubic-bezier(0.22, 1, 0.36, 1),
-    filter 1.05s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 1.05s cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: calc(var(--i, 0) * 55ms);
-  will-change: opacity, filter, transform;
+  opacity: 0.16;
+  will-change: opacity;
 }
 
 .mission-statement__word--muted {
   color: #767676;
-}
-
-.mission-statement.is-in .mission-statement__word {
-  opacity: 1;
-  filter: blur(0);
-  transform: none;
 }
 
 .briefing {
@@ -789,8 +780,5 @@ body.theme-dark .link__label {
 
   .mission-statement__word {
     opacity: 1 !important;
-    filter: none !important;
-    transform: none !important;
-    transition: none !important;
   }
 }
