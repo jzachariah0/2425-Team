@@ -8,17 +8,34 @@ body.theme-dark {
 }
 
 body.theme-dark .page,
-body.theme-dark .section,
+body.theme-dark .section:not(.section--mission),
 body.theme-dark .person,
 body.theme-dark .person__meta,
 body.theme-dark .header,
 body.theme-dark .footer,
 body.theme-dark .tbd,
 body.theme-dark .links,
-body.theme-dark .mission-statement,
 body.theme-dark .briefing {
   background-color: transparent !important;
   color: inherit;
+}
+
+body.theme-dark .section--mission {
+  background-color: #fff !important;
+  color: #1e2124 !important;
+}
+
+body.theme-dark .section--mission .section__title {
+  color: #767676 !important;
+}
+
+body.theme-dark .mission-statement {
+  background-color: transparent !important;
+  color: #1e2124 !important;
+}
+
+body.theme-dark .mission-statement__word--muted {
+  color: #767676 !important;
 }
 
 body.theme-dark {
