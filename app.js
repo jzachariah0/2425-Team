@@ -57,6 +57,29 @@ function renderProject(project) {
   $("#footer-stamp").textContent = `${project.name}  ${formatStamp(project.updated)}`;
 }
 
+function renderBriefing(briefing) {
+  const root = $("#briefing-block");
+  if (!root) return;
+  if (!briefing || !briefing.body) {
+    root.className = "tbd";
+    root.innerHTML = `
+      <p class="tbd__label earmark">TBD</p>
+      <p class="tbd__copy">No briefing posted yet.</p>`;
+    return;
+  }
+
+  root.className = "briefing";
+  const meta = [
+    briefing.author ? escapeHtml(briefing.author) : "",
+    briefing.role ? escapeHtml(briefing.role) : "",
+    briefing.date ? escapeHtml(formatDate(briefing.date)) : "",
+  ].filter(Boolean);
+
+  root.innerHTML = `
+    <p class="briefing__body">${escapeHtml(briefing.body)}</p>
+    <p class="briefing__byline earmark">${meta.join("  ·  ")}</p>`;
+}
+
 function renderDecisions(decisions) {
   const list = $("#decisions-list");
   if (!decisions || decisions.length === 0) {
@@ -488,6 +511,7 @@ async function boot() {
     dispose = initScene();
     const data = await loadData();
     renderProject(data.project);
+    renderBriefing(data.briefing);
     renderDecisions(data.decisions);
     renderLinks(data.links);
     renderMission(data.mission);

@@ -15,7 +15,8 @@ body.theme-dark .header,
 body.theme-dark .footer,
 body.theme-dark .tbd,
 body.theme-dark .links,
-body.theme-dark .mission {
+body.theme-dark .mission,
+body.theme-dark .briefing {
   background-color: transparent !important;
   color: inherit;
 }
@@ -463,6 +464,27 @@ body.theme-dark .link__label {
   letter-spacing: -0.015em;
   line-height: 1.35;
   color: rgba(229, 229, 229, 0.88);
+}
+
+.briefing {
+  max-width: 42rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: calc(var(--gutter, 1rem) * 2);
+}
+
+.briefing__body {
+  margin: 0;
+  font-family: var(--headline-100-family);
+  font-size: clamp(1.1111111111rem, 2.2vw, 1.5555555556rem);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  color: rgba(229, 229, 229, 0.88);
+}
+
+.briefing__byline {
+  margin: calc(var(--gutter, 1rem) * 1.75) 0 0;
+  color: #767676;
 }
 
 .table-wrap {
