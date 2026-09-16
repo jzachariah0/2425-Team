@@ -5,7 +5,13 @@
     "description": "Search-and-rescue sensing device. Fall 2026 Senior Design I. Spring 2027 is Senior Design II.",
     "updated": "2026-09-16"
   },
-  "mission": "Hera builds sensing systems that help first responders find people in rubble and low-visibility conditions. We combine radar, thermal sensing, and embedded compute into a fieldable search-and-rescue device for Senior Design at UT Dallas.",
+  "mission": {
+    "segments": [
+      { "text": "Hera builds " },
+      { "text": "sensing systems", "muted": true },
+      { "text": " that help first responders find people in rubble and low-visibility conditions." }
+    ]
+  },
   "briefing": {
     "body": "Senior Design I is underway. We are locking the sensing architecture, standing up the team workspace, and aligning hardware and software tracks for the first validation path. Expect decisions and milestones here as they land.",
     "author": "Joshua Zachariah",

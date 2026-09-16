@@ -121,10 +121,117 @@ function renderLinks(links) {
     .join("");
 }
 
-function renderMission(text) {
+function normalizeMission(mission) {
+  if (!mission) return [];
+  if (typeof mission === "string") {
+    return [{ text: mission, muted: false }];
+  }
+  if (Array.isArray(mission.segments)) {
+    return mission.segments.map((s) => ({
+      text: String(s.text || ""),
+      muted: Boolean(s.muted),
+    }));
+  }
+  if (mission.text) {
+    return [{ text: String(mission.text), muted: false }];
+  }
+  return [];
+}
+
+function flattenMissionChars(segments) {
+  const chars = [];
+  segments.forEach((seg) => {
+    for (const ch of seg.text) {
+      chars.push({ ch, muted: seg.muted });
+    }
+  });
+  return chars;
+}
+
+function paintMission(el, chars, count, showCursor) {
+  let html = "";
+  let openMuted = false;
+  for (let i = 0; i < count; i += 1) {
+    const { ch, muted } = chars[i];
+    if (muted && !openMuted) {
+      html += '<span class="mission-statement__muted">';
+      openMuted = true;
+    } else if (!muted && openMuted) {
+      html += "</span>";
+      openMuted = false;
+    }
+    html += escapeHtml(ch);
+  }
+  if (openMuted) html += "</span>";
+  if (showCursor) {
+    html += '<span class="mission-statement__cursor" aria-hidden="true"></span>';
+  }
+  el.innerHTML = html;
+}
+
+let missionTypeTimer = 0;
+
+function renderMission(mission) {
   const el = $("#mission-copy");
   if (!el) return;
-  el.textContent = text || "";
+  window.clearTimeout(missionTypeTimer);
+
+  const segments = normalizeMission(mission);
+  const chars = flattenMissionChars(segments);
+  if (chars.length === 0) {
+    el.textContent = "";
+    return;
+  }
+
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced) {
+    paintMission(el, chars, chars.length, false);
+    el.classList.add("is-done");
+    return;
+  }
+
+  el.classList.remove("is-done");
+  paintMission(el, chars, 0, true);
+
+  const section = $("#mission");
+  let started = false;
+
+  const startTyping = () => {
+    if (started) return;
+    started = true;
+    let i = 0;
+    const step = () => {
+      i += 1;
+      const done = i >= chars.length;
+      paintMission(el, chars, Math.min(i, chars.length), !done);
+      if (done) {
+        el.classList.add("is-done");
+        return;
+      }
+      const next = chars[i]?.ch;
+      const delay = next === " " ? 18 : next === "." || next === "," ? 70 : 28;
+      missionTypeTimer = window.setTimeout(step, delay);
+    };
+    missionTypeTimer = window.setTimeout(step, 220);
+  };
+
+  if (!section) {
+    startTyping();
+    return;
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          startTyping();
+          io.disconnect();
+        }
+      });
+    },
+    { threshold: 0.35 }
+  );
+  io.observe(section);
 }
 
 function renderTeam(members) {

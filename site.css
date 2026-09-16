@@ -15,7 +15,7 @@ body.theme-dark .header,
 body.theme-dark .footer,
 body.theme-dark .tbd,
 body.theme-dark .links,
-body.theme-dark .mission,
+body.theme-dark .mission-statement,
 body.theme-dark .briefing {
   background-color: transparent !important;
   color: inherit;
@@ -455,15 +455,50 @@ body.theme-dark .link__label {
   color: var(--accent-color);
 }
 
-.mission {
-  margin: 0;
-  max-width: 42rem;
+.section--mission .section__title {
+  text-align: center;
+}
+
+.mission-statement {
+  margin: 0 auto;
+  max-width: 48rem;
+  text-align: center;
   font-family: var(--headline-100-family);
-  font-size: clamp(1.1111111111rem, 2.2vw, 1.5555555556rem);
+  font-size: clamp(1.3333333333rem, 3.6vw, 2.2222222222rem);
   font-weight: 400;
-  letter-spacing: -0.015em;
-  line-height: 1.35;
-  color: rgba(229, 229, 229, 0.88);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: #fff;
+  min-height: 4.8em;
+}
+
+.mission-statement__muted {
+  color: #767676;
+}
+
+.mission-statement__cursor {
+  display: inline-block;
+  width: 0.08em;
+  height: 0.95em;
+  margin-left: 0.08em;
+  background: #767676;
+  vertical-align: -0.08em;
+  animation: mission-cursor 0.9s steps(1, end) infinite;
+}
+
+.mission-statement.is-done .mission-statement__cursor {
+  display: none;
+}
+
+@keyframes mission-cursor {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
 }
 
 .briefing {
@@ -726,5 +761,9 @@ body.theme-dark .link__label {
   .hero__still,
   .brand__mark {
     animation: none !important;
+  }
+
+  .mission-statement__cursor {
+    display: none !important;
   }
 }
