@@ -2,7 +2,7 @@
   "project": {
     "name": "Hera",
     "tagline": "2425 Team",
-    "description": "Search-and-rescue sensing device. Senior design command surface.",
+    "description": "Search-and-rescue sensing device. Fall 2026 Senior Design I. Spring 2027 is Senior Design II.",
     "updated": "2026-09-16"
   },
   "decisions": [],
@@ -67,44 +67,44 @@
     {
       "name": "Abdullah Adnan",
       "major": "CE",
-      "role": "TPM Hardware and Embedded Systems Backup SPOC",
+      "role": "TPM Hardware and Embedded Systems",
       "email": "ata230001@utdallas.edu",
       "photo": "media/team/abdullah.jpg"
     },
     {
       "name": "Faizan Kalam",
       "major": "CE",
-      "role": "Radar Firmware Engineer",
+      "role": "Radar Firmware Engineer, Scribe",
       "email": "fxk220010@utdallas.edu",
       "photo": "media/team/faizan.jpg"
     },
     {
       "name": "Ridwan Shakoor",
       "major": "CE",
-      "role": "Systems Integration and Wireless Engineer & Scribe",
+      "role": "Systems Integration and Wireless Engineer, Finance",
       "email": "rxs220092@utdallas.edu",
       "photo": "media/team/ridwan.jpg"
     },
     {
-      "name": "[Name]",
-      "major": "CE",
-      "role": "[Role]",
+      "name": "Fawaz Syed",
+      "major": "EE",
+      "role": "Power Systems Engineer",
       "email": "",
-      "photo": "media/team/member-5.jpg"
+      "photo": "media/team/fawaz.jpg"
     },
     {
-      "name": "[Name]",
+      "name": "Faris Suleiman",
       "major": "CE",
-      "role": "[Role]",
+      "role": "ML and Signal Processing Engineer",
       "email": "",
-      "photo": "media/team/member-6.jpg"
+      "photo": "media/team/faris.jpg"
     },
     {
-      "name": "[Name]",
+      "name": "Nicolas Price",
       "major": "CE",
-      "role": "[Role]",
+      "role": "Electrical Lead, Mechanical Build and Wiring",
       "email": "",
-      "photo": "media/team/member-7.jpg"
+      "photo": "media/team/nicolas.jpg"
     }
   ],
   "milestones": [
@@ -130,7 +130,7 @@
     },
     {
       "id": "defense",
-      "label": "Final defense",
+      "label": "Senior Design I defense",
       "date": "2026-12-05"
     }
   ]
