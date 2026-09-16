@@ -110,32 +110,8 @@ body.theme-dark .link__label {
   margin-bottom: calc(var(--gutter, 1rem) * 2);
 }
 
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  color: #fff;
-}
 
-.status__dot {
-  width: 0.4rem;
-  height: 0.4rem;
-  background: var(--accent-color);
-  box-shadow: 0 0 0 0 rgba(78, 138, 247, 0.55);
-  animation: pulse 2.2s ease-out infinite;
-}
 
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(78, 138, 247, 0.55);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(78, 138, 247, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(78, 138, 247, 0);
-  }
-}
 
 .brand {
   display: flex;
@@ -695,7 +671,6 @@ body.theme-dark .link__label {
 
 @media (prefers-reduced-motion: reduce) {
   .hero__still,
-  .status__dot,
   .brand__mark {
     animation: none !important;
   }

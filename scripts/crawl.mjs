@@ -59,7 +59,7 @@ function fetchBuffer(url, redirects = 0) {
 }
 
 function rewrite(text, contentType) {
-  // Keep origin bytes intact — rewriting breaks Next.js and absolute asset URLs.
+  // Keep origin bytes intact. Rewriting breaks Next.js and absolute asset URLs.
   return text;
 }
 

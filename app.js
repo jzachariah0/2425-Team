@@ -45,7 +45,6 @@ function renderProject(project) {
   const tag = $("#project-tag");
   if (tag) tag.textContent = project.tagline || "2425 Team";
   $("#project-desc").textContent = project.description;
-  $("#project-status").textContent = project.status;
   $("#updated-tag").textContent = `Updated ${formatStamp(project.updated)}`;
   $("#footer-stamp").textContent = `${project.name}  ${formatStamp(project.updated)}`;
 }
