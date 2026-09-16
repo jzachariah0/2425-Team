@@ -1,9 +1,10 @@
 {
   "project": {
-    "name": "2425 Team",
+    "name": "Hera",
+    "tagline": "2425 Team",
     "description": "Search-and-rescue sensing device. Senior design command surface.",
     "status": "ACTIVE",
-    "updated": "2026-09-15"
+    "updated": "2026-09-16"
   },
   "decisions": [],
   "links": [
