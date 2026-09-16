@@ -5,7 +5,9 @@
     "description": "Search-and-rescue sensing device. Fall 2026 Senior Design I. Spring 2027 is Senior Design II.",
     "updated": "2026-09-16"
   },
+  "mission": "Hera builds sensing systems that help first responders find people in rubble and low-visibility conditions. We combine radar, thermal sensing, and embedded compute into a fieldable search-and-rescue device for Senior Design at UT Dallas.",
   "decisions": [],
+  "milestones": [],
   "links": [
     {
       "id": "slack",
@@ -29,31 +31,19 @@
       "id": "charter",
       "label": "Team Charter",
       "subtitle": "Document",
-      "url": "https://example.com/charter"
+      "url": "https://cometmail-my.sharepoint.com/:f:/g/personal/jsz230000_utdallas_edu/IgDmrOsArL9HSb7y2PLh6oCAAXWii7ajYXEgHmXqQNspsZc?e=WAQZG4"
     },
     {
       "id": "proposal",
       "label": "Proposal",
       "subtitle": "Document",
       "url": "https://example.com/proposal"
-    }
-  ],
-  "glossary": [
-    {
-      "term": "Sensor Fusion",
-      "definition": "Combining readings from more than one sensor so the result is more reliable than any single source. Here that means thermal, IMU, and ranging data into one picture."
     },
     {
-      "term": "False Positive Rate",
-      "definition": "How often the detector reports a victim or hazard when none is there. We track it in validation because noisy alerts waste rescuer time."
-    },
-    {
-      "term": "Telemetry",
-      "definition": "Sending device health and sensing outputs to an operator view. Wi-Fi first, with local buffering when the link drops."
-    },
-    {
-      "term": "BOM",
-      "definition": "Bill of materials: the full parts list with quantities and costs. We freeze it before each order so spending stays clear."
+      "id": "github",
+      "label": "GitHub",
+      "subtitle": "Repository",
+      "url": "https://github.com/jzachariah0/hera"
     }
   ],
   "team": [
@@ -62,6 +52,8 @@
       "major": "CE",
       "role": "Team Lead, TPM Software",
       "email": "jsz230000@utdallas.edu",
+      "phone": "(469) 858-5532",
+      "linkedin": "https://www.linkedin.com/in/joshzachariah/",
       "photo": "media/team/joshua.jpg"
     },
     {
@@ -69,6 +61,8 @@
       "major": "CE",
       "role": "TPM Hardware and Embedded Systems",
       "email": "ata230001@utdallas.edu",
+      "phone": "(469) 352-1793",
+      "linkedin": "",
       "photo": "media/team/abdullah.jpg"
     },
     {
@@ -76,6 +70,8 @@
       "major": "CE",
       "role": "Radar Firmware Engineer, Scribe",
       "email": "fxk220010@utdallas.edu",
+      "phone": "(469) 562-1271",
+      "linkedin": "https://www.linkedin.com/in/kalamfaizan/",
       "photo": "media/team/faizan.jpg"
     },
     {
@@ -83,55 +79,36 @@
       "major": "CE",
       "role": "Systems Integration and Wireless Engineer, Finance",
       "email": "rxs220092@utdallas.edu",
+      "phone": "(469) 594-5828",
+      "linkedin": "https://www.linkedin.com/in/ridwanshakoor/",
       "photo": "media/team/ridwan.jpg"
     },
     {
       "name": "Fawaz Syed",
       "major": "EE",
       "role": "Power Systems Engineer",
-      "email": "",
+      "email": "fos230002@utdallas.edu",
+      "phone": "(469) 450-9281",
+      "linkedin": "https://www.linkedin.com/in/fawaz-syed-95a452337/",
       "photo": "media/team/fawaz.jpg"
     },
     {
       "name": "Faris Suleiman",
       "major": "CE",
       "role": "ML and Signal Processing Engineer",
-      "email": "",
+      "email": "fms220002@utdallas.edu",
+      "phone": "(469) 369-6004",
+      "linkedin": "https://www.linkedin.com/in/faris-suleiman-344aa3289/",
       "photo": "media/team/faris.jpg"
     },
     {
       "name": "Nicolas Price",
       "major": "CE",
       "role": "Electrical Lead, Mechanical Build and Wiring",
-      "email": "",
+      "email": "njp230003@utdallas.edu",
+      "phone": "(346) 970-0240",
+      "linkedin": "https://www.linkedin.com/in/nicolas-price/",
       "photo": "media/team/nicolas.jpg"
-    }
-  ],
-  "milestones": [
-    {
-      "id": "parts",
-      "label": "Parts ordered",
-      "date": "2026-09-22"
-    },
-    {
-      "id": "proposal",
-      "label": "Proposal submitted",
-      "date": "2026-10-03"
-    },
-    {
-      "id": "validation",
-      "label": "First validation test",
-      "date": "2026-11-07"
-    },
-    {
-      "id": "dryrun",
-      "label": "Demo dry run",
-      "date": "2026-11-21"
-    },
-    {
-      "id": "defense",
-      "label": "Senior Design I defense",
-      "date": "2026-12-05"
     }
   ]
 }

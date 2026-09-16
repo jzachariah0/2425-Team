@@ -60,14 +60,14 @@ function renderProject(project) {
 function renderDecisions(decisions) {
   const list = $("#decisions-list");
   if (!decisions || decisions.length === 0) {
+    list.className = "tbd";
     list.innerHTML = `
       <p class="tbd__label earmark">TBD</p>
       <p class="tbd__copy">No decisions logged yet.</p>`;
     return;
   }
   const sorted = [...decisions].sort((a, b) => (a.date < b.date ? 1 : -1));
-  list.classList.remove("tbd");
-  list.classList.add("decisions");
+  list.className = "decisions";
   list.innerHTML = sorted
     .map(
       (d) => `
@@ -98,17 +98,10 @@ function renderLinks(links) {
     .join("");
 }
 
-function renderGlossary(terms) {
-  const dl = $("#glossary-list");
-  dl.innerHTML = terms
-    .map(
-      (t) => `
-      <div class="glossary__item">
-        <dt class="glossary__term">${escapeHtml(t.term)}</dt>
-        <dd class="glossary__def">${escapeHtml(t.definition)}</dd>
-      </div>`
-    )
-    .join("");
+function renderMission(text) {
+  const el = $("#mission-copy");
+  if (!el) return;
+  el.textContent = text || "";
 }
 
 function renderTeam(members) {
@@ -126,12 +119,22 @@ function renderTeam(members) {
           />
         </div>
         <div class="person__meta">
-          <p class="person__major earmark">${escapeHtml(m.major || "CE")}</p>
+          <p class="person__major earmark">${escapeHtml(m.major || "")}</p>
           <h3 class="person__name">${escapeHtml(m.name)}</h3>
           <p class="person__role">${escapeHtml(m.role)}</p>
           ${
             m.email
               ? `<a class="person__email" href="mailto:${escapeAttr(m.email)}">${escapeHtml(m.email)}</a>`
+              : ""
+          }
+          ${
+            m.phone
+              ? `<a class="person__phone" href="tel:${escapeAttr(String(m.phone).replace(/[^\d+]/g, ""))}">${escapeHtml(m.phone)}</a>`
+              : ""
+          }
+          ${
+            m.linkedin
+              ? `<a class="person__linkedin" href="${escapeAttr(m.linkedin)}" target="_blank" rel="noopener noreferrer">LinkedIn</a>`
               : ""
           }
         </div>
@@ -140,28 +143,17 @@ function renderTeam(members) {
     .join("");
 }
 
-function initReveal() {
-  const nodes = document.querySelectorAll("[data-reveal], .person");
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    nodes.forEach((n) => n.classList.add("is-visible"));
-    return;
-  }
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("is-visible");
-          io.unobserve(e.target);
-        }
-      });
-    },
-    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-  );
-  nodes.forEach((n) => io.observe(n));
-}
-
 function renderMilestones(milestones) {
   const root = $("#timeline");
+  if (!milestones || milestones.length === 0) {
+    root.className = "tbd";
+    root.innerHTML = `
+      <p class="tbd__label earmark">TBD</p>
+      <p class="tbd__copy">Milestones will be posted here.</p>`;
+    return;
+  }
+
+  root.className = "timeline";
   const today = new Date();
   today.setHours(12, 0, 0, 0);
 
@@ -205,6 +197,26 @@ function renderMilestones(milestones) {
         )
         .join("")}
     </div>`;
+}
+
+function initReveal() {
+  const nodes = document.querySelectorAll("[data-reveal], .person");
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    nodes.forEach((n) => n.classList.add("is-visible"));
+    return;
+  }
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("is-visible");
+          io.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+  );
+  nodes.forEach((n) => io.observe(n));
 }
 
 function initScene() {
@@ -478,10 +490,9 @@ async function boot() {
     renderProject(data.project);
     renderDecisions(data.decisions);
     renderLinks(data.links);
-    renderGlossary(data.glossary);
+    renderMission(data.mission);
     renderTeam(data.team);
     renderMilestones(data.milestones);
-    // observe people after DOM inject
     requestAnimationFrame(() => initReveal());
   } catch (err) {
     console.error(err);
