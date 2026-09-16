@@ -5,6 +5,7 @@ body.theme-dark {
   background: #000 !important;
   color: #fff !important;
   min-height: 100%;
+  overflow-x: clip;
 }
 
 body.theme-dark .page,
@@ -138,10 +139,12 @@ body.theme-dark .link__label {
   align-items: flex-end;
   gap: clamp(1rem, 3vw, 1.75rem);
   margin-bottom: calc(var(--gutter, 1rem) * 1.75);
+  min-width: 0;
+  width: 100%;
 }
 
 .brand__mark {
-  width: clamp(4.5rem, 9vw, 6.5rem);
+  width: clamp(3.5rem, 9vw, 6.5rem);
   height: auto;
   flex-shrink: 0;
   filter: drop-shadow(0 0 24px rgba(78, 138, 247, 0.25));
@@ -160,6 +163,9 @@ body.theme-dark .link__label {
 
 .brand__text {
   min-width: 0;
+  flex: 1 1 auto;
+  container-type: inline-size;
+  container-name: brand-title;
 }
 
 .brand__tag {
@@ -171,15 +177,22 @@ body.theme-dark .link__label {
   font-family: "Alliance No.2", "Alliance No.1", system-ui, -apple-system,
     BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial,
     sans-serif !important;
-  font-size: clamp(1.55rem, 5.8vw, 4.25rem);
+  font-size: clamp(1.15rem, 100cqi / 12.2, 4.25rem);
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1;
   color: #fff;
   margin: 0;
-  max-width: none;
+  max-width: 100%;
   white-space: nowrap;
+  overflow: visible;
   text-shadow: 0 0 60px rgba(0, 0, 0, 0.45);
+}
+
+@supports not (font-size: 1cqi) {
+  .headline {
+    font-size: clamp(1.15rem, 4.8vw + 0.25rem, 4.25rem);
+  }
 }
 
 .dek {
@@ -463,22 +476,37 @@ body.theme-dark .link__label {
 }
 
 .section--mission {
+  position: relative;
   background: #fff !important;
   color: #1e2124;
   border-bottom: none;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  width: 100%;
   min-height: 72vh;
   display: flex;
   align-items: center;
-  padding: clamp(4.5rem, 14vh, 9rem) var(--h-spacing, 1.25rem);
+  padding: clamp(4.5rem, 14vh, 9rem) 0;
+  box-sizing: border-box;
+  isolation: isolate;
+}
+
+.section--mission::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  background: #fff;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .section--mission .mission-shell {
   width: 100%;
-  max-width: var(--max-width, 80rem);
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
 
 .section--mission .section__title {
@@ -737,6 +765,44 @@ body.theme-dark .link__label {
 }
 
 @media (max-width: 40rem) {
+  .header {
+    padding-top: clamp(3.25rem, 12vh, 5.5rem);
+    padding-bottom: 2.5rem;
+  }
+
+  .brand {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  .brand__mark {
+    width: 3.25rem;
+  }
+
+  .brand__text {
+    width: 100%;
+  }
+
+  .headline {
+    font-size: clamp(1.2rem, 100cqi / 11.8, 2.35rem);
+    letter-spacing: -0.035em;
+  }
+
+  .dek {
+    font-size: 1rem;
+    max-width: none;
+    margin-bottom: 1.75rem;
+  }
+
+  .nav {
+    gap: 0.65rem 1.15rem;
+  }
+
+  .nav a {
+    font-size: 0.72rem;
+  }
+
   .team-grid {
     grid-template-columns: 1fr;
   }
@@ -761,6 +827,20 @@ body.theme-dark .link__label {
 
   .link:last-child {
     border-bottom: none;
+  }
+
+  .mission-statement {
+    font-size: clamp(1.05rem, 4.8vw, 1.4rem);
+    max-width: none;
+  }
+
+  .section--mission {
+    min-height: 58vh;
+    padding: clamp(3.5rem, 10vh, 5.5rem) 0;
+  }
+
+  .briefing__body {
+    font-size: clamp(1rem, 4.2vw, 1.25rem);
   }
 
   .hero__still {
