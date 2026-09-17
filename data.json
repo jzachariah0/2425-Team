@@ -7,13 +7,20 @@
   },
   "mission": {
     "segments": [
-      { "text": "Hera builds " },
-      { "text": "sensing systems", "muted": true },
-      { "text": " that help first responders find people in rubble and low-visibility conditions." }
+      {
+        "text": "Hera builds "
+      },
+      {
+        "text": "sensing systems",
+        "muted": true
+      },
+      {
+        "text": " that help first responders find people in rubble and low-visibility conditions."
+      }
     ]
   },
   "briefing": {
-    "body": "Senior Design I is underway. The team charter has been submitted. We are actively working on the proposal and drafting the parts list we need to get started. Alignment meeting with Dr. Neal Skinner tomorrow. We are locking the sensing architecture, standing up the team workspace, and aligning hardware and software tracks for the first validation path. Expect decisions and milestones here as they land.",
+    "body": "The team charter has been submitted. Our first alignment meeting with Dr. Neal Skinner was held today, where we walked through our team charter, our proposed approach for Hera, and our current timeline, and received direct technical guidance on RF performance through rebar and metal construction, PCB material selection, and approved fabrication vendors. A full onboarding email with meeting notes and all team resources was sent to Dr. Skinner following the meeting. We are now actively drafting the formal project proposal and the parts list needed to begin building, with a focus on locking the sensing architecture and aligning hardware and software tracks toward our first validation path. Next up: finalizing and submitting the formal proposal, ordering the TI radar module and core hardware, and beginning self righting shell prototyping in parallel. Expect decisions and milestones here as they land.",
     "author": "Joshua Zachariah",
     "role": "Team Lead",
     "date": "2026-09-16"
