@@ -30,6 +30,11 @@
       "date": "2026-09-17",
       "decision": "Cloud provider for Hera is under debate: AWS or GCP",
       "reason": "Need to choose where telemetry, storage, and backend services will run. Decision pending team discussion."
+    },
+    {
+      "date": "2026-09-17",
+      "decision": "How do we get data off an ESP32 in remote locations where WiFi is unavailable and cellular is limited?",
+      "reason": "Open. Need a connectivity and offload plan for field deployments with weak or no network."
     }
   ],
   "milestones": [],
