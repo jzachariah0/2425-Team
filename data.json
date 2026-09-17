@@ -28,8 +28,8 @@
   "decisions": [
     {
       "date": "2026-09-17",
-      "decision": "Prefer Microsoft Azure as the cloud provider for Hera",
-      "reason": "The team already runs on Microsoft through UTD email, OneDrive, and SharePoint. Azure keeps identity, file storage, and any backend or telemetry services in one stack. AWS stays the fallback if device IoT tooling or free credits make it clearly better."
+      "decision": "Cloud provider for Hera is under debate: AWS or GCP",
+      "reason": "Need to choose where telemetry, storage, and backend services will run. Decision pending team discussion."
     }
   ],
   "milestones": [],
