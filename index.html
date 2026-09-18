@@ -100,7 +100,7 @@
     "name": "Hera Command Center",
     "tagline": "2425 Team",
     "description": "Next-generation search-and-rescue sensing device.",
-    "updated": "2026-09-17"
+    "updated": "2026-09-18"
   },
   "mission": {
     "segments": [
@@ -123,6 +123,11 @@
     "date": "2026-09-17"
   },
   "decisions": [
+    {
+      "date": "2026-09-18",
+      "decision": "Hera Beacon is handheld, not throwable",
+      "reason": "The team's POC direction, an individual display on the device itself, confirmed handheld as the working design. Reasoning: physical rescue always requires a responder to eventually approach the survivor directly, so an operator carried device does not introduce a fundamentally new category of risk beyond what rescue already requires. Open item for testing: detection range and signal penetration through debris draw on the same power budget, so whether the device's realistic standoff distance provides a meaningful safety margin over close range needs empirical validation, this is part of the RF and rebar characterization already planned."
+    },
     {
       "date": "2026-09-17",
       "decision": "POC dashboard runs locally, not through AWS",
