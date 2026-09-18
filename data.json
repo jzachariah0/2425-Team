@@ -29,7 +29,7 @@
     {
       "date": "2026-09-17",
       "decision": "Use AWS as the cloud provider for Hera",
-      "reason": "Selected over GCP after team debate."
+      "reason": "Google discontinued its equivalent service, Cloud IoT Core, back in 2023, so AWS is the only one of the two that still has a real, purpose built product for connecting and managing sensor devices at all."
     },
     {
       "date": "2026-09-17",
