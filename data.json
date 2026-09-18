@@ -28,6 +28,11 @@
   "decisions": [
     {
       "date": "2026-09-17",
+      "decision": "POC dashboard runs locally, not through AWS",
+      "reason": "Standing up real AWS infrastructure, device certificates, IAM permissions, an actual cloud connected dashboard, is genuine additional engineering work that does not serve what the POC is actually meant to prove, that the sensors and display pipeline work. A local dashboard the ESP32 serves on its own WiFi network proves the same core capability and is faster to build, which matters given the deadline. AWS remains the settled choice for the real fleet system later, once multiple deployed pods actually need centralized data aggregation."
+    },
+    {
+      "date": "2026-09-17",
       "decision": "Use AWS as the cloud provider for Hera",
       "reason": "Google discontinued its equivalent service, Cloud IoT Core, back in 2023, so AWS is the only one of the two that still has a real, purpose built product for connecting and managing sensor devices at all."
     },
