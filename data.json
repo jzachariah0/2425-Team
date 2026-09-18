@@ -20,10 +20,10 @@
     ]
   },
   "briefing": {
-    "body": "The team charter has been submitted. Our first alignment meeting with Dr. Neal Skinner was held today, where we walked through our team charter, our proposed approach for Hera, and our current timeline, and received direct technical guidance on RF performance through rebar and metal construction, PCB material selection, and approved fabrication vendors. A full onboarding email with meeting notes and all team resources was sent to Dr. Skinner following the meeting. We are now actively drafting the formal project proposal and the parts list needed to begin building, with a focus on locking the sensing architecture and aligning hardware and software tracks toward our first validation path. Next up: finalizing and submitting the formal proposal, ordering the TI radar module and core hardware, and beginning self righting shell prototyping in parallel. Expect decisions and milestones here as they land.",
+    "body": "POC parts finalized: ESP32, LD2410C and LD2450 mmWave sensors, TFT touch display, and a power bank in place of a battery management circuit for this phase. Ordering underway. Significant progress made on the command center dashboard, with an early build already matching the team's vision for the fleet view concept. The demo dashboard will run on static, representative data rather than a live device connection, keeping build speed up now without forcing rework once the real product architecture exists. Actual product hardware ordering is intentionally held until after Wednesday's meeting with Dr. Skinner, keeping this week's focus on the proposal, PDR readiness, and the POC demo.",
     "author": "Joshua Zachariah",
     "role": "Team Lead",
-    "date": "2026-09-16"
+    "date": "2026-09-17"
   },
   "decisions": [
     {
