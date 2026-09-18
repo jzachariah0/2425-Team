@@ -28,8 +28,8 @@
   "decisions": [
     {
       "date": "2026-09-17",
-      "decision": "Cloud provider for Hera is under debate: AWS or GCP",
-      "reason": "Need to choose where telemetry, storage, and backend services will run. Decision pending team discussion."
+      "decision": "Use AWS as the cloud provider for Hera",
+      "reason": "Selected over GCP after team debate."
     },
     {
       "date": "2026-09-17",
