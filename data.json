@@ -47,7 +47,13 @@
       "reason": "Open. Need a connectivity and offload plan for field deployments with weak or no network."
     }
   ],
-  "milestones": [],
+  "milestones": [
+    {
+      "id": "poc-demo",
+      "label": "POC and demo dashboard finished",
+      "date": "2026-09-22"
+    }
+  ],
   "links": [
     {
       "id": "slack",
