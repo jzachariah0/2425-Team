@@ -20,7 +20,7 @@
     ]
   },
   "briefing": {
-    "body": "Following the September 23 sync with Dr. Skinner, the team shifted focus to Preliminary Design Review requirements, targeting early to mid November. Current priorities are the compute platform decision (TI radar module confirmed, board still under evaluation), the physical build approach, and field data reporting without WiFi, where LoRa is the leading candidate under active range testing. Hardware progress is prioritized over further dashboard work per Dr. Skinner's guidance. All tasks are tracked on the Jira Kanban board.",
+    "body": "Following the September 23 sync with Dr. Skinner, the team shifted focus to Preliminary Design Review requirements. We aim to complete this before the expected early to mid November window. Current priorities are the compute platform decision (TI radar module confirmed, board still under evaluation), the physical build approach, and field data reporting without WiFi, where LoRa is the leading candidate under active range testing. Hardware progress is prioritized over further dashboard work per Dr. Skinner's guidance. All tasks are tracked on the Jira Kanban board.",
     "author": "Joshua Zachariah",
     "role": "Team Lead",
     "date": "2026-09-24"
