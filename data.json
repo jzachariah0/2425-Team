@@ -20,10 +20,10 @@
     ]
   },
   "briefing": {
-    "body": "The POC is complete, and the command center dashboard for the demo is finished. Today is our alignment sync with Dr. Skinner, and we are ready to walk through the work. Agenda: (1) quick scope update, (2) POC and demo presentation, (3) command center dashboard presentation, (4) research updates if applicable, (5) parts discussion, (6) logistics, and (7) Qualcomm. Coming out of this meeting, we need validation on parts and clear next steps. The priority is to move fast, execute, and deliver.",
+    "body": "Following the September 23 sync with Dr. Skinner, the team shifted focus to Preliminary Design Review requirements, targeting early to mid November. Current priorities are the compute platform decision (TI radar module confirmed, board still under evaluation), the physical build approach, and field data reporting without WiFi, where LoRa is the leading candidate under active range testing. Hardware progress is prioritized over further dashboard work per Dr. Skinner's guidance. All tasks are tracked on the Jira Kanban board.",
     "author": "Joshua Zachariah",
     "role": "Team Lead",
-    "date": "2026-09-23"
+    "date": "2026-09-24"
   },
   "decisions": [
     {
