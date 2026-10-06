@@ -153,6 +153,11 @@
     },
     {
       "date": "2026-09-17",
+      "decision": "Use TI IWR6843AOPEVM for core sensing",
+      "reason": "Chosen over designing a custom RF front end. Millimeter wave RF front end design requires specialized test equipment and multi week PCB fabrication cycles, and a single layout error can leave the device with no working sensor at all. Using qualified TI radar silicon lets the team put its engineering effort into vital sign extraction, system integration, and the handheld unit itself, which mirrors how commercial radar vital sign products are typically built."
+    },
+    {
+      "date": "2026-09-17",
       "decision": "POC dashboard runs locally, not through AWS",
       "reason": "Standing up real AWS infrastructure, device certificates, IAM permissions, an actual cloud connected dashboard, is genuine additional engineering work that does not serve what the POC is actually meant to prove, that the sensors and display pipeline work. A local dashboard the ESP32 serves on its own WiFi network proves the same core capability and is faster to build, which matters given the deadline. AWS remains the settled choice for the real fleet system later, once multiple deployed units actually need centralized data aggregation."
     },
