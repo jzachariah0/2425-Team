@@ -27,24 +27,44 @@
   },
   "decisions": [
     {
+      "date": "2026-10-05",
+      "decision": "A live cloud backend is a core goal of Hera Beacon",
+      "reason": "A live AWS IoT Core backend is part of the core scope, not a later add on. This supersedes the framing in the Sep 17 POC dashboard entry, which deferred cloud work until multiple deployed units needed centralized aggregation. Following Dr. Skinner's guidance, hardware remains the near term priority, so cloud work is sequenced behind getting the handheld unit working. Real time data from the handheld unit reaching a command center is central to what Hera Beacon is for, so presenting it as a simulated concept undersold the project."
+    },
+    {
+      "date": "2026-10-05",
+      "decision": "Final compute platform",
+      "reason": "TI radar module is confirmed. ESP32 / XIAO is the working track for Senior Design 1, and Qualcomm's Arduino UNO Q is under parallel evaluation. The final board is not committed."
+    },
+    {
+      "date": "2026-10-05",
+      "decision": "Physical build approach",
+      "reason": "Committed for Senior Design 1: a sub board and module stack, not a custom bare microprocessor board. The approach for the final product is still open, driven partly by sourcing constraints."
+    },
+    {
+      "date": "2026-10-05",
+      "decision": "PCB laminate, FR4 or Rogers",
+      "reason": "Open. Pending empirical RF testing through rebar reinforced concrete."
+    },
+    {
       "date": "2026-09-18",
       "decision": "Hera Beacon is handheld, not throwable",
-      "reason": "The team's POC direction, an individual display on the device itself, confirmed handheld as the working design. Reasoning: physical rescue always requires a responder to eventually approach the survivor directly, so an operator carried device does not introduce a fundamentally new category of risk beyond what rescue already requires. Open item for testing: detection range and signal penetration through debris draw on the same power budget, so whether the device's realistic standoff distance provides a meaningful safety margin over close range needs empirical validation, this is part of the RF and rebar characterization already planned."
+      "reason": "The team's POC direction, an individual display on the device itself, confirmed handheld as the working design. Reasoning: physical rescue always requires a responder to eventually approach the survivor directly, so an operator carried device does not introduce a fundamentally new category of risk beyond what rescue already requires. Open item for testing: detection range and signal penetration through debris draw on the same power budget, so whether the device's realistic standoff distance provides a meaningful safety margin over close range needs empirical validation. This is part of the RF and rebar characterization already planned."
     },
     {
       "date": "2026-09-17",
       "decision": "POC dashboard runs locally, not through AWS",
-      "reason": "Standing up real AWS infrastructure, device certificates, IAM permissions, an actual cloud connected dashboard, is genuine additional engineering work that does not serve what the POC is actually meant to prove, that the sensors and display pipeline work. A local dashboard the ESP32 serves on its own WiFi network proves the same core capability and is faster to build, which matters given the deadline. AWS remains the settled choice for the real fleet system later, once multiple deployed pods actually need centralized data aggregation."
+      "reason": "Standing up real AWS infrastructure, device certificates, IAM permissions, an actual cloud connected dashboard, is genuine additional engineering work that does not serve what the POC is actually meant to prove, that the sensors and display pipeline work. A local dashboard the ESP32 serves on its own WiFi network proves the same core capability and is faster to build, which matters given the deadline. AWS remains the settled choice for the real fleet system later, once multiple deployed units actually need centralized data aggregation."
     },
     {
       "date": "2026-09-17",
       "decision": "Use AWS as the cloud provider for Hera",
-      "reason": "Google discontinued its equivalent service, Cloud IoT Core, back in 2023, so AWS is the only one of the two that still has a real, purpose built product for connecting and managing sensor devices at all."
+      "reason": "Google discontinued its equivalent service, Cloud IoT Core, back in 2023, so AWS is the only one of the two that still has a real, purpose built product for connecting and managing sensor devices at all. The team also already has direct AWS IoT Core experience from a prior project."
     },
     {
       "date": "2026-09-17",
-      "decision": "How do we get data off an ESP32 in remote locations where WiFi is unavailable and cellular is limited?",
-      "reason": "Open. Need a connectivity and offload plan for field deployments with weak or no network."
+      "decision": "How do we get data off the device in remote locations where WiFi is unavailable and cellular is limited?",
+      "reason": "Open. Need a connectivity and offload plan for field deployments with weak or no network. Update, Oct 5, 2026: LoRa is now the leading candidate and is under active range testing. Still open, not committed."
     }
   ],
   "milestones": [
